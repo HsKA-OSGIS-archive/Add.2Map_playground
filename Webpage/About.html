@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"> -->
+
+		<!-- Font Awsome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+		<!-- Leaflet CSS, JS -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
+		<!-- Own CSS -->
+		<link rel="stylesheet" href="AddToMap.css">
+
+		<title>Add.ToMap</title>
+	</head>
+
+	<body>
+		<!-- Header navigation bar -->
+		<header class="navbar navbar-expand-lg navbar-light bg-light" id="menu"> <!-- bg-light-->
+			<a class="navbar-brand" href="#">
+				<img src="Logo_MitSchriftzug_trans.png" width="200" class="d-inline-block align-top" onclick="reloadPage()" alt="Logo AddToMap">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="Index.html">Home</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</header>
+
+		<div class="card">
+			description
+		</div>
+
+		<div class="card">
+		  <h5 class="card-header">Used open-source tools</h5>
+		  <div class="card-body">
+		    <h5 class="card-title">Bootstrap</h5>
+		    <p class="card-text">
+						The MIT License (MIT)<br><br>
+
+						Copyright (c) 2011-2018 Twitter, Inc.<br>
+						Copyright (c) 2011-2018 The Bootstrap Authors<br><br>
+
+						Permission is hereby granted, free of charge, to any person obtaining a copy
+						of this software and associated documentation files (the "Software"), to deal
+						in the Software without restriction, including without limitation the rights
+						to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+						copies of the Software, and to permit persons to whom the Software is
+						furnished to do so, subject to the following conditions:<br><br>
+
+						The above copyright notice and this permission notice shall be included in
+						all copies or substantial portions of the Software.<br><br>
+
+						THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+						IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+						FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+						AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+						LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+						OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+						THE SOFTWARE.<br><br><br>
+					</p>
+
+					<h5 class="card-title">Font Awesome</h5>
+					<p class="card-text">
+					Font Awesome Free License<br><br>
+
+					Font Awesome Free is free, open source, and GPL friendly. You can use it for
+					commercial projects, open source projects, or really almost whatever you want.
+					Full Font Awesome Free license: https://fontawesome.com/license/free.<br><br
+
+					<h6>Icons:</h6> CC BY 4.0 License (https://creativecommons.org/licenses/by/4.0/)
+					In the Font Awesome Free download, the CC BY 4.0 license applies to all icons
+					packaged as SVG and JS file types.<br><br>
+
+					<h6>Fonts:</h6> SIL OFL 1.1 License (https://scripts.sil.org/OFL)
+					In the Font Awesome Free download, the SIL OFL license applies to all icons
+					packaged as web and desktop font files.<br><br>
+
+					<h6>Code:</h6> MIT License (https://opensource.org/licenses/MIT)
+					In the Font Awesome Free download, the MIT license applies to all non-font and
+					non-icon files.<br><br>
+
+					<h6>Attribution</h6>
+					Attribution is required by MIT, SIL OFL, and CC BY licenses. Downloaded Font
+					Awesome Free files already contain embedded comments with sufficient
+					attribution, so you shouldn't need to do anything additional when using these
+					files normally.<br><br>
+
+					We've kept attribution comments terse, so we ask that you do not actively work
+					to remove them from files, especially code. They're a great way for folks to
+					learn about Font Awesome.<br><br>
+
+					<h6>Brand Icons</h6>
+					All brand icons are trademarks of their respective owners. The use of these
+					trademarks does not indicate endorsement of the trademark holder by Font
+					Awesome, nor vice versa. **Please do not use brand logos for any purpose except
+					to represent the company, product, or service to which they refer.**<br><br><br>
+				</p>
+
+				<h5 class="card-title">Leaflet</h5>
+				<p class="card-text">
+					Copyright (c) 2010-2019, Vladimir Agafonkin<br>
+					Copyright (c) 2010-2011, CloudMade<br>
+					All rights reserved.<br><br>
+
+					Redistribution and use in source and binary forms, with or without modification, are
+					permitted provided that the following conditions are met:<br><br>
+
+					   1. Redistributions of source code must retain the above copyright notice, this list of
+					      conditions and the following disclaimer.<br><br>
+
+					   2. Redistributions in binary form must reproduce the above copyright notice, this list
+					      of conditions and the following disclaimer in the documentation and/or other materials
+					      provided with the distribution.<br><br>
+
+					THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+					EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+					MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+					COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+					EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+					SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+					HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+					TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+					SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.<br><br><br>
+				</p>
+
+				<h5 class="card-title">Leaflet Fullscreen</h5>
+				<p class="card-text">
+					Copyright (c) 2015, MapBox<br><br>
+
+					Permission to use, copy, modify, and/or distribute this software for any purpose
+					with or without fee is hereby granted, provided that the above copyright notice
+					and this permission notice appear in all copies.<br><br>
+
+					THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+					REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+					FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT,
+					OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+					PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+					ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.<br><br><br>
+				</p>
+		  </div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<!-- own javascript -->
+		<script src="AddToMap.js"></script>
+	</body>
+</html>
