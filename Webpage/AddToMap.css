@@ -23,3 +23,7 @@
     border-bottom-width:thick;
     border-bottom-color:'#8b0000';
 }
+
+.card {
+  margin: 1rem;
+}
