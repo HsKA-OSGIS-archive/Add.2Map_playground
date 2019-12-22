@@ -1,0 +1,25 @@
+#map {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 500px;  /* or as desired */
+  width: 100%;  /* This means "100% of the width of its container", the .col-md-8 */
+}
+
+.jumbotron-fluid h1 {
+   font-size: 2em;
+}
+
+.jumbotron-fluid {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.label{
+  size="15"
+}
+
+#menu {
+    border-bottom-width:thick;
+    border-bottom-color:'#8b0000';
+}

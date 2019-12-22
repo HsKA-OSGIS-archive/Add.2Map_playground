@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"> -->
+
+		<!-- Font Awsome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+		<!-- Leaflet CSS, JS -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
+		<!-- Own CSS -->
+		<link rel="stylesheet" href="AddToMap.css">
+
+		<title>Add.ToMap</title>
+	</head>
+
+	<body>
+		<!-- Header navigation bar -->
+		<header class="navbar navbar-expand-lg navbar-light bg-light" id="menu"> <!-- bg-light-->
+			<a class="navbar-brand" href="#">
+				<img src="Logo_MitSchriftzug_trans.png" width="200" class="d-inline-block align-top" onclick="reloadPage()" alt="Logo AddToMap">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">About</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+
+		<!-- Welcome text and discription -->
+		<div class="jumbotron jumbotron-fluid" id="welcometext">
+			<div class="container">
+				<button type="button" class="close" aria-label="Close" id="closeWelcome">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h1 class="display-4">Welcome to Add.ToMap!</h1>
+				<p class="lead">
+					Welcome text and description.
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				</p>
+			</div>
+		</div>
+
+		<!-- Container with Digitalization and mapping steps -->
+		<div class="container">
+
+			<!-- Heading Digitalization and mapping steps -->
+			<div class="row my-2" id="headingProcess">
+				<div class="col-xl">
+					<h5>Digitalization and mapping steps</h5>
+				</div>
+			</div>
+
+			<!-- Process steps -->
+			<div class="row">
+				<div class="col-xl">
+
+					<!-- Tabs of steps -->
+					<ul class="nav nav-tabs" id="processTabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="uploadTab" data-toggle="tab" href="#uploadContent" role="tab" aria-controls="Upload Tab" aria-selected="true">1 Upload</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" id="verifyDigTab" data-toggle="tab" href="#verifyDigContent" role="tab" aria-controls="Digitalization Tab" aria-selected="false" aria-disabled="true">2 Digitalization</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" id="verifyGeoTab" data-toggle="tab" href="#veryGeoContent" role="tab" aria-controls="Geocoding Tap" aria-selected="false" aria-disabled="true">3 Geocoding</a>
+						</li>
+					</ul>
+
+					<!-- Corresponding content of tabs -->
+					<div class="tab-content" id="tabContent">
+
+						<!-- Upload Tab -->
+						<div class="tab-pane fade show active my-1" id="uploadContent" role="tabpanel" aria-labelledby="Upload">
+							<!-- Upload functionality -->
+							<div class="row my-1">
+								<div class="col">
+									<div class="bd-example">
+										<form>
+										  <div class="form-group">
+											<label for="exampleFormControlFile1">Choose an image of addresses</label>
+											<input type="file" id="pictureInput" accept="image/*" onchange="loadFile(event)" class="form-control-file">
+										  </div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="row my-1">
+								<div class="col">
+									<img id="previewImage" class="img-fluid"> <!--alt="Responsive image"-->
+								</div>
+							</div>
+
+							<!-- Button -->
+							<div class="row my-2">
+								<div class="col">
+									<button type="button" id="NextToTesseract" class="btn btn-primary float-right" disabled aria-disabled="true">Next</button>
+								</div>
+							</div>
+
+						</div>
+
+						<!-- Digitalization Tab -->
+						<div class="tab-pane fade my-1" id="verifyDigContent" role="tabpanel" aria-labelledby="Digitalization result">
+							<div class="row my-1">
+								<div class="col">
+									<p class="text-left">Please select and correct all addresses, which should be geocoded and shown on the map. Each part of the address should be separated by a comma.</p>
+									<div id="digitalizationInputGroup">
+
+										<!--
+										dynamically created:
+										<div class="input-group my-3">
+										  <div class="input-group-prepend">
+										    <div class="input-group-text">
+										      <input type="checkbox" id="test_tesseract_checkbox" aria-label="Checkbox for following text input">
+										    </div>
+										  </div>
+										  <input type="text" class="form-control" id="digit_address1" aria-label="Text input with checkbox">
+											<div class="input-group-append">
+												<button class="btn btn-outline-secondary" type="button" id="btn_reset"><i class="fas fa-undo"></i> Reset</button>
+												<button class="btn btn-outline-secondary" type="button" id="btn_delete"><i class="far fa-trash-alt"></i> Trash</button>
+											</div>
+										</div>
+										-->
+
+									</div>
+								</div>
+							</div>
+							<!-- add input group -->
+							<div class="row my-1">
+								<div class="col">
+									<button type="button" class="btn btn btn-light fa-sm" onclick="createInputCheckbox(bAdditionalInput=true)"><i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+
+							<!-- Buttons -->
+							<div class="row my-2">
+								<div class="col">
+									<button type="button" onclick="reloadPage()" class="btn btn-primary float-left">Cancel</button>
+								</div>
+								<div class="col">
+									<button type="button" id="NextToPhoton" class="btn btn-primary float-right">Next</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Geocoding Tab -->
+						<div class="tab-pane fade my-1" id="veryGeoContent" role="tabpanel" aria-labelledby="Geocoding result">
+							<div class="row my-1">
+								<div class="col">
+									<p class="text-left">Please select all addresses, which should be shown on the map.</p>
+									<div class="input-group my-2" id="geocodingCeckboxGroup">
+
+										<!--
+										dynamically created:
+										<div class="form-group form-check">
+											<input type="checkbox" class="form-check-input" id="geocodingAddress">
+											<label class="form-check-label" id="geocodingResult" for="geocodingAddress"></label>
+										</div>
+										-->
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Buttons -->
+							<div class="row my-2">
+								<div class="col">
+									<button type="button" onclick="reloadPage()" class="btn btn-primary float-left">Cancel</button>
+								</div>
+								<div class="col">
+									<button type="button" id="NextToMap" onclick="hideStepsShowMap()" class="btn btn-primary float-right">Next</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Heading for map -->
+			<div class="row my-2" id="headingMap" style="display: none">
+				<div class="col-xl">
+					<h5>Mapped addresses</h5>
+				</div>
+			</div>
+
+			<!-- Leaflet map -->
+			<div class="row" id="mapdiv" style="display: none">
+				<div class="col-xl">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<!-- own javascript -->
+		<script src="AddToMap.js"></script>
+	</body>
+
+</html>
