@@ -27,3 +27,9 @@
 .card {
   margin: 1rem;
 }
+
+#dropdown {
+  list-style-type:none;
+  padding: 0rem;
+  margin: 0rem;
+}

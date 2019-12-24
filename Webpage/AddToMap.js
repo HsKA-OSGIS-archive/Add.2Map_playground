@@ -1,3 +1,6 @@
+var x = "Language of the browser: " + navigator.language;
+console.log(x);
+
 // Photon Result
 // TODO: dynamic creation of variables for geojson results
 var test_geojson = {"features":[{"geometry":{"coordinates":[8.385558897150922,49.01233445],"type":"Point"},"type":"Feature","properties":{"osm_id":109861108,"osm_type":"W","extent":[8.3852704,49.0124502,8.385848,49.012223],"country":"Germany","osm_key":"building","housenumber":"3","city":"Karlsruhe","street":"Hoffstraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Gebäude HO","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
@@ -329,3 +332,93 @@ function getPhotonAddress(tGeojson){
 
 	return addr;
 };
+
+// multi language support
+i18next.init({
+  lng: 'en',
+  debug: true,
+  resources: {
+    en: {
+      translation: {
+				"home": "Home",
+				"about": "About",
+				"navbarDropdown":"Language",
+				"english":"English",
+				"german":"German",
+				"welcomeHeading":"Welcome to Add.ToMap!",
+				"welcomeDescription":"Welcome text and description.",
+				"processStepsHeading":"Digitalization and mapping steps",
+				"uploadTab":"1 Upload",
+				"verifyDigTab":"2 Digitalization",
+				"verifyGeoTab":"3 Geocoding",
+				"chooseFile":"Choose an image of addresses",
+				"NextToTesseract":"Next",
+				"NextToPhoton":"Next",
+				"NextToMap":"Next",
+				"digitDescription":"Please select and correct all addresses, which should be geocoded and shown on the map. Each part of the address should be separated by a comma.",
+				"geocDescription":"Please select all addresses, which should be shown on the map.",
+				"cancel1":"Cancel",
+				"cancel2":"Cancel",
+				"mapHeading":"Mapped addresses"
+      }
+    },
+    de: {
+      translation: {
+				"home": "Home",
+				"about": "Über uns",
+				"navbarDropdown":"Sprache",
+				"english":"Englisch",
+				"german":"Deutsch",
+				"welcomeHeading": "Willkommen bei Add.ToMap!",
+				"welcomeDescription":"Willkommenstext und Beschreibung",
+				"processStepsHeading":"Digitalisierungs- und Kartierungsschritte",
+				"uploadTab":"1 Hochladen",
+				"verifyDigTab":"2 Digitalisierung",
+				"verifyGeoTab":"3 Geokodierung",
+				"chooseFile":"Wählen Sie ein Foto mit Adressen",
+				"NextToTesseract":"Weiter",
+				"NextToPhoton":"Weiter",
+				"NextToMap":"Weiter",
+				"digitDescription":"Wählen und korrigieren Sie alle Adressen, welche geokodiert werden und in der Karte abgebildet werden sollen. Die einzelnen Adressenkomponenten sollten durch ein Komma voneinander getrennt werden.",
+				"geocDescription":"Wählen Sie alle Adressen aus, welche auf der Karte dargestellt werden sollen.",
+				"cancel1":"Abbrechen",
+				"cancel2":"Abbrechen",
+				"mapHeading":"Kartierte Adressen"
+      }
+    }
+  }
+}, function(err, t) {
+  // init set content
+  updateContent();
+});
+
+function updateContent() {
+	document.getElementById('home').innerHTML = i18next.t('home');
+	document.getElementById('about').innerHTML = i18next.t('about');
+	document.getElementById('welcomeHeading').innerHTML = i18next.t('welcomeHeading');
+	document.getElementById('welcomeDescription').innerHTML = i18next.t('welcomeDescription');
+	document.getElementById('processStepsHeading').innerHTML = i18next.t('processStepsHeading');
+	document.getElementById('uploadTab').innerHTML = i18next.t('uploadTab');
+	document.getElementById('verifyDigTab').innerHTML = i18next.t('verifyDigTab');
+	document.getElementById('verifyGeoTab').innerHTML = i18next.t('verifyGeoTab');
+	document.getElementById('chooseFile').innerHTML = i18next.t('chooseFile');
+	document.getElementById('NextToTesseract').innerHTML = i18next.t('NextToTesseract');
+	document.getElementById('NextToPhoton').innerHTML = i18next.t('NextToPhoton');
+	document.getElementById('NextToMap').innerHTML = i18next.t('NextToMap');
+	document.getElementById('digitDescription').innerHTML = i18next.t('digitDescription');
+	document.getElementById('geocDescription').innerHTML = i18next.t('geocDescription');
+	document.getElementById('cancel1').innerHTML = i18next.t('cancel1');
+	document.getElementById('cancel2').innerHTML = i18next.t('cancel2');
+	document.getElementById('mapHeading').innerHTML = i18next.t('mapHeading');
+	document.getElementById('navbarDropdown').innerHTML = i18next.t('navbarDropdown');
+	document.getElementById('english').innerHTML = i18next.t('english');
+	document.getElementById('german').innerHTML = i18next.t('german');
+}
+
+function changeLng(lng) {
+  i18next.changeLanguage(lng);
+}
+
+i18next.on('languageChanged', () => {
+  updateContent();
+});
