@@ -26,12 +26,16 @@
 		<!-- Own CSS -->
 		<link rel="stylesheet" href="AddToMap.css">
 
+		<!-- Translation files -->
+		<script src="langDE.js"></script>
+		<script src="langEN.js"></script>
+
 		<title>Add.ToMap</title>
 	</head>
 
 	<body>
 		<!-- Header navigation bar -->
-		<header class="navbar navbar-expand-lg navbar-light bg-light" id="menu"> <!-- bg-light-->
+		<header class="navbar navbar-expand-lg navbar-light" id="menu"> <!-- bg-light-->
 			<a class="navbar-brand" href="#">
 				<img src="Logo_MitSchriftzug_trans.png" width="200" class="d-inline-block align-top" onclick="reloadPage()" alt="Logo AddToMap">
 			</a>
@@ -41,14 +45,14 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="Index.html">Home</a>
+						<a class="nav-link" id="home" href="Index.html">Home</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
+						<a class="nav-link" id="about" href="About.html">About <span class="sr-only">(current)</span></a>
 					</li>
 				</ul>
 				<li id="dropdown" class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style="padding-left: 0px; color: black;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Language
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">

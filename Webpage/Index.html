@@ -23,8 +23,15 @@
 		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
 		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 
+		<!-- Tesseract OCR -->
+		<script src="https://unpkg.com/tesseract.js@v2.0.0-alpha.13/dist/tesseract.min.js"></script>
+
 		<!-- Own CSS -->
 		<link rel="stylesheet" href="AddToMap.css">
+
+		<!-- Translation files -->
+		<script src="langDE.js"></script>
+		<script src="langEN.js"></script>
 
 		<title>Add.ToMap</title>
 	</head>
@@ -48,7 +55,7 @@
 					</li>
 				</ul>
 				<li id="dropdown" class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style="padding-left: 0px; color: black; z-index: 999" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style="padding-left: 0px; color: black;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Language
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -134,7 +141,7 @@
 						<div class="tab-pane fade my-1" id="verifyDigContent" role="tabpanel" aria-labelledby="Digitalization result">
 							<div class="row my-1">
 								<div class="col">
-									<p id="digitDescription">Please select and correct all addresses, which should be geocoded and shown on the map. Each part of the address should be separated by a comma.</p>
+									<p class="text-left" id="digitDescription">Please select and correct all addresses, which should be geocoded and shown on the map. Each part of the address should be separated by a comma.</p>
 									<div id="digitalizationInputGroup">
 
 										<!--
@@ -178,7 +185,7 @@
 						<div class="tab-pane fade my-1" id="veryGeoContent" role="tabpanel" aria-labelledby="Geocoding result">
 							<div class="row my-1">
 								<div class="col">
-									<p class= id="geocDescription">Please select all addresses, which should be shown on the map.</p>
+									<p class="text-left" id="geocDescription">Please select all addresses, which should be shown on the map.</p>
 									<div class="input-group my-2" id="geocodingCeckboxGroup">
 
 										<!--
