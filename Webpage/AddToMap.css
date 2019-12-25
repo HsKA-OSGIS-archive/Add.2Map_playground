@@ -8,11 +8,13 @@
 
 .jumbotron-fluid h1 {
    font-size: 2em;
+   color: white;
 }
 
 .jumbotron-fluid {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  background-color: rgb(183, 21, 21);
 }
 
 .label{
@@ -20,8 +22,7 @@
 }
 
 #menu {
-    border-bottom-width:thick;
-    border-bottom-color:'#8b0000';
+  background-color: rgb(233, 236, 239);
 }
 
 .card {
@@ -29,7 +30,23 @@
 }
 
 #dropdown {
-  list-style-type:none;
-  padding: 0rem;
-  margin: 0rem;
+  list-style-type:none
+}
+
+.dropdown-toggle::after {
+    margin-left: .45em;
+    vertical-align: middle;
+}
+
+#uploadTab, #verifyDigTab, #verifyGeoTab {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#welcomeDescription {
+  color: white;
+}
+
+#mapHeading {
+  padding-top: 15px;
 }
