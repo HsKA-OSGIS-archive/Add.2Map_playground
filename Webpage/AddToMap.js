@@ -8,7 +8,9 @@ var test_geojson2 = {"features":[{"geometry":{"coordinates":[8.392054,49.013238]
 lGeocodeResults = [test_geojson, test_geojson2];
 
 // Tesseract result array
-lTesseractResults = ["Hoffstraße,3,76133,Karlsruhe", "Moltkestraße,30,76133,Karlsuhe"];
+lTesseractResults = [];
+
+var imageUrl = "";
 
 /* Array of corrected tesseract results / input for photon request
  (filled onclick button NextToPhoton) */
@@ -88,19 +90,40 @@ function hideStepsShowMap(){
 // Global variable for index of html elements which show digitalization result
 var iIndexDigiInput = 0;
 
+function checkIfFinished(){
+    return(lTesseractResults.length >= 0);
+}
+
+var isFinished = false;
+
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
 	e.preventDefault();
+	// TODO: use filled Tesseract array lTesseractResult after finished function runOCR!
+	runOCR(imageUrl);
 
-	// Enable and disable Tabs in Digitalization and Mapping Steps
-	$('#verifyDigTab').removeClass('disabled');
-	$('a[href="#verifyDigContent"]').trigger('click');
-	$('#uploadTab').attr('class','nav-link disabled');
+/*
+	runOCR(imageUrl)
+	.then(function(finalResult) {
+  console.log('Got the final result: ' + finalResult);
+	})
+	.then(result => {
+		console.log("In result!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+		console.log("Result: " + result);
+		this.lTesseract = result;})
+	.catch(failureCallback);
+	*/
 
-	// TODO: fill Tesseract array lTesseractResults
+	console.log("To early! function runOCR is not yet finished!! lTesseract Result is still empty: " + lTesseractResults[0]);
 
 	// create html elements to show digitalization result
 	createDigitalizationCheckboxes(lTesseractResults);
+
+	// Enable and disable Tabs in Digitalization and Mapping Steps
+	$('#verifyDigTab').removeClass('disabled');
+	$('a[href="#verifyDigContent"]').trigger('click')
+	$('#uploadTab').attr('class','nav-link disabled');
+
 });
 
 
@@ -297,7 +320,8 @@ function reloadPage(){
 // Preview of uploaded image
 var loadFile = function(event) {
     var previewImage = document.getElementById('previewImage');
-    previewImage.src = URL.createObjectURL(event.target.files[0]);
+		imageUrl = URL.createObjectURL(event.target.files[0]);
+    previewImage.src = imageUrl;
 
 	$('#NextToTesseract').prop('disabled', false);
 	$('#NextToTesseract').attr('aria-disabled','false');
