@@ -1,0 +1,22 @@
+var englishTranslation = {
+  "home": "Home",
+  "about": "About",
+  "navbarDropdown":"Language",
+  "english":"English",
+  "german":"German",
+  "welcomeHeading":"Welcome to Add.ToMap!",
+  "welcomeDescription":"Welcome text and description.",
+  "processStepsHeading":"Digitalization and mapping steps",
+  "uploadTab":"1 Upload",
+  "verifyDigTab":"2 Digitalization",
+  "verifyGeoTab":"3 Geocoding",
+  "chooseFile":"Choose an image of addresses",
+  "NextToTesseract":"Next",
+  "NextToPhoton":"Next",
+  "NextToMap":"Next",
+  "digitDescription":"Please select and correct all addresses, which should be geocoded and shown on the map. Each part of the address should be separated by a comma.",
+  "geocDescription":"Please select all addresses, which should be shown on the map.",
+  "cancel1":"Cancel",
+  "cancel2":"Cancel",
+  "mapHeading":"Mapped addresses"
+}
