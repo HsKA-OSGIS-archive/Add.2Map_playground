@@ -1,6 +1,14 @@
 // Photon Result
 // TODO: dynamic creation of variables for geojson results
-var test_geojson = {"features":[{"geometry":{"coordinates":[8.385558897150922,49.01233445],"type":"Point"},"type":"Feature","properties":{"osm_id":109861108,"osm_type":"W","extent":[8.3852704,49.0124502,8.385848,49.012223],"country":"Germany","osm_key":"building","housenumber":"3","city":"Karlsruhe","street":"Hoffstraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Gebäude HO","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}
+
+var test_geojson = JSON.parse(Get("http://photon.komoot.de/api/?q=Karlsruhe,Hoffstraße&limit=1"));
+//var test_geojson = {"features":[{"geometry":{"coordinates":[8.385558897150922,49.01233445],"type":"Point"},"type":"Feature","properties":{"osm_id":109861108,"osm_type":"W","extent":[8.3852704,49.0124502,8.385848,49.012223],"country":"Germany","osm_key":"building","housenumber":"3","city":"Karlsruhe","street":"Hoffstraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Gebäude HO","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
 var test_geojson2 = {"features":[{"geometry":{"coordinates":[8.392054,49.013238],"type":"Point"},"type":"Feature","properties":{"osm_id":6576279444,"osm_type":"N","country":"Germany","osm_key":"amenity","housenumber":"30","city":"Karlsruhe","street":"Moltkestraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Fakultät für Wirtschaftswissenschaften (W)","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
 
 // TODO: dynamcally append all Photon result variables to array
