@@ -38,7 +38,7 @@
 				recognizedTexts();
 				foundAddress();
 			});
-			// return
+			return reco_Addr_Step2;
 
 		}
         //total result
