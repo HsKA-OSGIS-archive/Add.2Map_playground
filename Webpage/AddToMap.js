@@ -100,14 +100,14 @@ var iIndexDigiInput = 0;
 
 function checkIfFinished(){
     return(lTesseractResults.length >= 0);
-}
+};
 
 var isFinished = false;
 
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
 	e.preventDefault();
-	// TODO: use filled Tesseract array lTesseractResult after finished function runOCR!
+	// TODO: use filled Tesseract array lTesseractResult !after! finished function runOCR!
 	runOCR(imageUrl);
 
 /*
