@@ -1,22 +1,8 @@
-// Photon Result
-// TODO: dynamic creation of variables for geojson results
-function Get(yourUrl){
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourUrl,false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
-}
-
-var test_geojson = JSON.parse(Get("http://photon.komoot.de/api/?q=Karlsruhe,Hoffstraße&limit=1"));
-//var test_geojson = {"features":[{"geometry":{"coordinates":[8.385558897150922,49.01233445],"type":"Point"},"type":"Feature","properties":{"osm_id":109861108,"osm_type":"W","extent":[8.3852704,49.0124502,8.385848,49.012223],"country":"Germany","osm_key":"building","housenumber":"3","city":"Karlsruhe","street":"Hoffstraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Gebäude HO","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
-var test_geojson2 = {"features":[{"geometry":{"coordinates":[8.392054,49.013238],"type":"Point"},"type":"Feature","properties":{"osm_id":6576279444,"osm_type":"N","country":"Germany","osm_key":"amenity","housenumber":"30","city":"Karlsruhe","street":"Moltkestraße","osm_value":"university","postcode":"76133","name":"Hochschule Karlsruhe - Fakultät für Wirtschaftswissenschaften (W)","state":"Baden-Württemberg"}}],"type":"FeatureCollection"}
-
-// TODO: dynamcally append all Photon result variables to array
-// list of geocoding json results
-lGeocodeResults = [test_geojson, test_geojson2];
-
 // Tesseract result array
 lTesseractResults = [];
+
+//Geocode resultsarray
+lGeocodeResults = [];
 
 var imageUrl = "";
 
@@ -107,9 +93,19 @@ var isFinished = false;
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
 	e.preventDefault();
-	// TODO: use filled Tesseract array lTesseractResult !after! finished function runOCR!
 	runOCR(imageUrl);
-
+  //This is not a nice Solution, but works, if the recognigion does not need longer than 5 seconds. (Attemps with a THEN function werent successful)
+  setTimeout(function afterFiveSeconds() {
+    lTesseractResults = reco_Addr_Step2;
+  }, 5000)
+  setTimeout(function afterFiveFiveSeconds() {
+    // create html elements to show digitalization result
+    createDigitalizationCheckboxes(lTesseractResults);
+    // Enable and disable Tabs in Digitalization and Mapping Steps
+    $('#verifyDigTab').removeClass('disabled');
+    $('a[href="#verifyDigContent"]').trigger('click')
+    $('#uploadTab').attr('class','nav-link disabled');
+  }, 5500)
 /*
 	runOCR(imageUrl)
 	.then(function(finalResult) {
@@ -121,17 +117,6 @@ $("#NextToTesseract").click(function(e){
 		this.lTesseract = result;})
 	.catch(failureCallback);
 	*/
-
-	console.log("To early! function runOCR is not yet finished!! lTesseract Result is still empty: " + lTesseractResults[0]);
-
-	// create html elements to show digitalization result
-	createDigitalizationCheckboxes(lTesseractResults);
-
-	// Enable and disable Tabs in Digitalization and Mapping Steps
-	$('#verifyDigTab').removeClass('disabled');
-	$('a[href="#verifyDigContent"]').trigger('click')
-	$('#uploadTab').attr('class','nav-link disabled');
-
 });
 
 
@@ -155,11 +140,18 @@ $("#NextToPhoton").click(function(e){
 		//console.log("InputTextId: " + textInput.id + " address: " + address);
 	});
 
-	/*
-	TODO:
-		1. for each address in array "lCorrectedTesseractAddresses": send geocoding request to photon
-		2. fill geocoding array lGeocodeResults with photon result of each address
-	*/
+  // Photon Result
+  function Get(yourUrl){
+      var Httpreq = new XMLHttpRequest(); // a new request
+      Httpreq.open("GET",yourUrl,false);
+      Httpreq.send(null);
+      return Httpreq.responseText;
+  }
+
+  var corrAddress;
+  for (corrAddress = 0; corrAddress < lCorrectedTesseractAddresses.length; corrAddress++) {
+    lGeocodeResults.push(JSON.parse(Get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
+  }
 
 	// create html elemets to show geocoded addresses
 	createGeocodingCheckboxes(lGeocodeResults);
