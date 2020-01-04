@@ -5,9 +5,7 @@ var reco_Addr_Step2 = [];
 
 
 function runOCR(picturePath){
-	console.log("document is ready!");
 	console.log("OCR is Running!");
-
 	const exampleImage = picturePath;//File Source----------------------------
 	const worker = new Tesseract.TesseractWorker();
 	worker.recognize(exampleImage, 'deu+eng')
@@ -18,7 +16,6 @@ function runOCR(picturePath){
 		recognizedTexts();
 		foundAddress();
 	});
-	return reco_Addr_Step2;
 }
 
 //total result
