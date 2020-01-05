@@ -100,12 +100,22 @@ var isFinished = false;
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
   //showError("Bitte Warten"); // Test for error popup
+  var x = document.getElementById("snackbar");
+  setTimeout(function () {
+    x.className = "show";
+  }, 0);
+  setTimeout(function () {
+    x.className = x.className.replace("show", "hide");
+  }, 25500);
+
+//  $('.toast').toast({delay: 5500});
+//$('.toast').toast('show');
 	e.preventDefault();
 	runOCR(imageUrl);
   //This is not a nice Solution, but works, if the recognigion does not need longer than 5 seconds. (Attemps with a THEN function werent successful)
   setTimeout(function afterFiveSeconds() {
     lTesseractResults = reco_Addr_Step2;
-  }, 5000)
+  }, 25000)
   setTimeout(function afterFiveFiveSeconds() {
     // create html elements to show digitalization result
     createDigitalizationCheckboxes(lTesseractResults);
@@ -113,7 +123,7 @@ $("#NextToTesseract").click(function(e){
     $('#verifyDigTab').removeClass('disabled');
     $('a[href="#verifyDigContent"]').trigger('click')
     $('#uploadTab').attr('class','nav-link disabled');
-  }, 5500)
+  }, 25500)
 /*
 	runOCR(imageUrl)
 	.then(function(finalResult) {
@@ -130,6 +140,7 @@ $("#NextToTesseract").click(function(e){
 
 // OnClick event ButtonId: NextToPhoton
 $("#NextToPhoton").click(function(e){
+
 	e.preventDefault();
 
 	// Enable and disable Tabs in Digitalization and Mapping Steps
@@ -146,6 +157,19 @@ $("#NextToPhoton").click(function(e){
 		// append selected address to array lCorrectedTesseractAddresses
 		lCorrectedTesseractAddresses.push(address);
 		//console.log("InputTextId: " + textInput.id + " address: " + address);
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    icount = 0;
+    if (document.readyState === "complete") {
+      icount += 1;
+      if (icount == lCorrectedTesseractAddresses.length){
+        console.log("alle geladen");
+        setTimeout(function () {
+          x.className = x.className.replace("show", "hide");
+        }, 0);
+      }
+  }
+
 	});
 
   // Photon Result
