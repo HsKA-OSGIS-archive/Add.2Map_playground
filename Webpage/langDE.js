@@ -18,5 +18,6 @@ var germanTranslation = {
   "geocDescription":"Wählen Sie alle Adressen aus, welche auf der Karte dargestellt werden sollen.",
   "cancel1":"Abbrechen",
   "cancel2":"Abbrechen",
-  "mapHeading":"Kartierte Adressen"
+  "mapHeading":"Kartierte Adressen",
+  "errorTitle":"Ups, da ist etwas schiefgegegangen"
 }

@@ -32,6 +32,13 @@ function loadMap(tMapId){
 };
 
 
+/* function to show pop up*/
+function showError(textError) {
+        console.log("in show error function");
+        document.getElementById("errormessage").innerHTML = textError;
+        $("#errorPopup").modal();
+    }
+
 ////// Bootstrap //////
 
 // close welcometext
@@ -92,6 +99,7 @@ var isFinished = false;
 
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
+  //showError("Bitte Warten"); // Test for error popup
 	e.preventDefault();
 	runOCR(imageUrl);
   //This is not a nice Solution, but works, if the recognigion does not need longer than 5 seconds. (Attemps with a THEN function werent successful)

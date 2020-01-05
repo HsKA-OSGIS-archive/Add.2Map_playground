@@ -18,5 +18,6 @@ var englishTranslation = {
   "geocDescription":"Please select all addresses, which should be shown on the map.",
   "cancel1":"Cancel",
   "cancel2":"Cancel",
-  "mapHeading":"Mapped addresses"
+  "mapHeading":"Mapped addresses",
+  "errorTitle":"Oops, something went wrong!"
 }
