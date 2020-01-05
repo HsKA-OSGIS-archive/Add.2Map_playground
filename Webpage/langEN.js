@@ -5,7 +5,7 @@ var englishTranslation = {
   "english":"English",
   "german":"German",
   "welcomeHeading":"Welcome to Add.ToMap!",
-  "welcomeDescription":"Welcome text and description.",
+  "welcomeDescription":"This website converts your photo of one or more addresses into a point on a map. Please follow the steps below.",
   "processStepsHeading":"Digitalization and mapping steps",
   "uploadTab":"1 Upload",
   "verifyDigTab":"2 Digitalization",

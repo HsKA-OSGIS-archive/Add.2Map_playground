@@ -5,7 +5,7 @@ var germanTranslation = {
   "english":"Englisch",
   "german":"Deutsch",
   "welcomeHeading": "Willkommen bei Add.ToMap!",
-  "welcomeDescription":"Willkommenstext und Beschreibung",
+  "welcomeDescription":"Diese Webseite konvertiert dein Foto von einer oder mehr Addresses in einen Punkt auf einer Karte. Bitte folge den unten aufgeführten Schritten.",
   "processStepsHeading":"Digitalisierungs- und Kartierungsschritte",
   "uploadTab":"1 Hochladen",
   "verifyDigTab":"2 Digitalisierung",
