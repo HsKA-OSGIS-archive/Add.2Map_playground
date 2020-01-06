@@ -213,8 +213,20 @@ $("#NextToPhoton").click(function(e){
     lGeocodeResults.push(JSON.parse(Get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
   }
 
-	// create html elemets to show geocoded addresses
-	createGeocodingCheckboxes(lGeocodeResults);
+	if (lGeocodeResults.length ==0 && lCorrectedTesseractAddresses ==0){
+		showError("No address is given! Please make sure that at least one address is given");
+	}
+	else if (lGeocodeResults.length != lCorrectedTesseractAddresses){
+		showError("To at least one address no location could be found");
+		// create html elemets to show geocoded addresses
+		createGeocodingCheckboxes(lGeocodeResults);
+	} else{
+		// create html elemets to show geocoded addresses
+		createGeocodingCheckboxes(lGeocodeResults);
+
+	}
+
+
 
 });
 
