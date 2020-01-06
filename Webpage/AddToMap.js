@@ -103,13 +103,40 @@ function hideStepsShowMap(){
 	loadMap("map");
 
 	var allGeoJsons = [];
+	const lPopupAttibutes = ["name", "street", "housenumber", "postalcode","city","state"];
 
 	// add markers for addresses
 	for (id in selectedIds){
+		var lPropertyKeys = Object.keys(lGeocodeResults[id].features[0].properties);
+		var lPopupText = [];
 		var leafletGeojson = L.geoJSON(lGeocodeResults[id], {
     	style: {"color": "#ff0000"},
-			onEachFeature: function(feature, layer){layer.bindPopup("<strong>" + feature.properties['name'])}  //'<pre>'+JSON.stringify(feature.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>'
+			onEachFeature: function(feature, layer){
+
+				if (lPropertyKeys.includes("name")){
+					lPopupText.push(feature.properties['name']);
+				}
+				if (lPropertyKeys.includes("street")){
+					if (lPropertyKeys.includes("housenumber")){
+						lPopupText.push(feature.properties['street']+" "+feature.properties['housenumber']);
+					}else {
+						lPopupText.push(feature.properties['street']);
+					}
+				}
+				if (lPropertyKeys.includes("city")){
+					if (lPropertyKeys.includes("postcode")){
+						lPopupText.push(feature.properties['postcode']+" "+feature.properties['city']);
+					}else {
+						lPopupText.push(feature.properties['city']);
+					}
+				}
+				if (lPropertyKeys.includes("state")){
+					lPopupText.push(feature.properties['state']);
+				}
+				layer.bindPopup(lPopupText.join("<br>"));
+			}
 		});
+
 		allGeoJsons.push(leafletGeojson);
 		leafletGeojson.addTo(map);
 	}
