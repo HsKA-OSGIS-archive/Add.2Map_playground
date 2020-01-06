@@ -84,6 +84,13 @@ $(document).ready(function(){
 // hides processing steps & shows leaflet map
 function hideStepsShowMap(){
 
+	// check if enough selected (if not gives opportunity to do so)
+	var iChecked = $('.form-check-input:checked').length;
+	if (!iChecked){
+		showError("No address is given! Please make sure that at least one address is given", "Keine Adresse wurde angegeben. Gebe mindestens eine Addresse an!");
+		return;
+	}
+
 	var selectedIds = [];
 
 	// hide processing steps
@@ -246,6 +253,13 @@ function get(yourUrl){
 // OnClick event ButtonId: NextToPhoton
 $("#NextToPhoton").click(function(e){
 	e.preventDefault();
+
+	// check if enough selected (if not gives opportunity to do so)
+	var iChecked = $('.digit-input-checkbox:checked').length;
+	if (!iChecked){
+		showError("No address is given! Please make sure that at least one address is given", "Keine Adresse wurde angegeben. Gebe mindestens eine Addresse an!");
+		return;
+	}
 
 	// Enable and disable Tabs in Digitalization and Mapping Steps
 	$('#verifyGeoTab').removeClass('disabled');
