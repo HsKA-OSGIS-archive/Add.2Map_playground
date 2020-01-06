@@ -44,7 +44,7 @@ function loadMap(tMapId){
 		center: [48.63, 9.19],
 		zoom: 7,
 		minZoom:6,
-		maxBounds:[[47.20,6.7],[49.97,10.94]]
+		//maxBounds:[[47.20,6.7],[49.97,10.94]]
 	});
 
 	// add basemap
@@ -123,84 +123,101 @@ function hideStepsShowMap(){
 // Global variable for index of html elements which show digitalization result
 var iIndexDigiInput = 0;
 
-function checkIfFinished(){
-    return(lTesseractResults.length >= 0);
-};
 
-var isFinished = false;
+var time = 0;
+
+// Loading sign
+var x = document.getElementById("snackbar");
+
+// loop: every loop takes five seconds; after every loop:check if addresses are found;
+function myLoop () {
+	 setTimeout(function () {
+			time += 5000;
+			console.log("time  "+ time+ " länge aaray "+  reco_Addr_Step2.length);
+
+			// under 30 seconds; no address found: loop again
+			if (time < 20000 && reco_Addr_Step2.length == 0) {
+				 myLoop();
+				 console.log("loop again");
+			}
+
+			// time out after 30 seconds
+			if (time >= 20000 && reco_Addr_Step2.length == 0){
+				console.log("time over");
+				// hide loading sign
+				setTimeout(function () {
+					x.className = x.className.replace("show", "hide");
+				}, 0);
+
+				showError("It needs to much time to read this photo. Please make a new picture or cut the important parts. Make sure that there is an address.", "Es dauert zu lange das Bild zu lesen. Bitte mache ein neues Foto oder schneide es zu. Stell klar, dass eine Addresse sichtbar ist.");
+				return;
+			}
+
+			// address is found
+			if (reco_Addr_Step2.length !=0){
+				console.log("address found");
+
+				// hide
+				setTimeout(function () {
+					x.className = x.className.replace("show", "hide");
+				}, 0);
+
+				lTesseractResults = reco_Addr_Step2;
+				// create html elements to show digitalization result
+				createDigitalizationCheckboxes(lTesseractResults);
+				// Enable and disable Tabs in Digitalization and Mapping Steps
+				$('#verifyDigTab').removeClass('disabled');
+				$('a[href="#verifyDigContent"]').trigger('click')
+				$('#uploadTab').attr('class','nav-link disabled');
+				return;
+			}
+			// found address in last step
+			if (time >= 20000 && reco_Addr_Step2.length != 0){
+				console.log("address found");
+				setTimeout(function () {
+					x.className = x.className.replace("show", "hide");
+				}, 0);
+				lTesseractResults = reco_Addr_Step2;
+				// create html elements to show digitalization result
+				createDigitalizationCheckboxes(lTesseractResults);
+				// Enable and disable Tabs in Digitalization and Mapping Steps
+				$('#verifyDigTab').removeClass('disabled');
+				$('a[href="#verifyDigContent"]').trigger('click')
+				$('#uploadTab').attr('class','nav-link disabled');
+				return;
+			}
+	 }, 5000)
+}
 
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
-	//Loading sign
-  var x = document.getElementById("snackbar");
+	e.preventDefault();
+
+	// show loading sign in loop
   setTimeout(function () {
     x.className = "show";
   }, 0);
-	e.preventDefault();
-	// start tesseract
+
+	// start tesseract with timeout
 	setTimeout(runOCR(imageUrl),20000);
-// show loading sign
-	var x = document.getElementById("snackbar");
+
+	// show loading sign
 	x.className = "show";
-	var time = 0;
+
 	//error handling + generic wating time (5 seconds steps)
 	myLoop();
-// loop: every loop takes five seconds; after every loop:check if addresses are found;
-	function myLoop () {
-	   setTimeout(function () {
-	      time += 5000;
-				console.log("time  "+ time+ " länge aaray "+  reco_Addr_Step2.length);
-				// under 30 seconds; no address found: loop again
-	      if (time < 20000 && reco_Addr_Step2.length == 0) {
-	         myLoop();
-					 console.log("loop again");
-	      }
-				// time out after 30 seconds
-				if (time >= 20000 && reco_Addr_Step2.length == 0){
-					console.log("time over");
-					setTimeout(function () {
-						x.className = x.className.replace("show", "hide");
-					}, 0);
-					showError("It needs to much time to read this photo. Please make a new picture or cut the important parts. Make sure that there is an address.", "Es dauert zu lange das Bild zu lesen. Bitte mache ein neues Foto oder schneide es zu. Stell klar, dass eine Addresse sichtbar ist.");
-					return;
-				}
-				// address is found
-				if (reco_Addr_Step2.length !=0){
-					console.log("address found");
-					setTimeout(function () {
-						x.className = x.className.replace("show", "hide");
-					}, 0);
-					lTesseractResults = reco_Addr_Step2;
-					// create html elements to show digitalization result
-					createDigitalizationCheckboxes(lTesseractResults);
-					// Enable and disable Tabs in Digitalization and Mapping Steps
-					$('#verifyDigTab').removeClass('disabled');
-					$('a[href="#verifyDigContent"]').trigger('click')
-					$('#uploadTab').attr('class','nav-link disabled');
-					return;
-				}
-				// found address in last step
-				if (time >= 20000 && reco_Addr_Step2.length != 0){
-					console.log("address found");
-					setTimeout(function () {
-						x.className = x.className.replace("show", "hide");
-					}, 0);
-					lTesseractResults = reco_Addr_Step2;
-					// create html elements to show digitalization result
-					createDigitalizationCheckboxes(lTesseractResults);
-					// Enable and disable Tabs in Digitalization and Mapping Steps
-					$('#verifyDigTab').removeClass('disabled');
-					$('a[href="#verifyDigContent"]').trigger('click')
-					$('#uploadTab').attr('class','nav-link disabled');
-					return;
-				}
-	   }, 5000)
-	}
 });
+
+// Photon Result
+function get(yourUrl){
+		var Httpreq = new XMLHttpRequest(); // a new request
+		Httpreq.open("GET",yourUrl,false);
+		Httpreq.send(null);
+		return Httpreq.responseText;
+}
 
 // OnClick event ButtonId: NextToPhoton
 $("#NextToPhoton").click(function(e){
-
 	e.preventDefault();
 
 	// Enable and disable Tabs in Digitalization and Mapping Steps
@@ -213,12 +230,15 @@ $("#NextToPhoton").click(function(e){
 		var value = $(this).attr('value');
 		var textInput = document.getElementById('digitInputText'+value);
 		var address = textInput.value;
+
 		// append selected address to array lCorrectedTesseractAddresses
 		lCorrectedTesseractAddresses.push(address);
+
 		//show loading sign
     var x = document.getElementById("snackbar");
     x.className = "show";
-    icount = 0;
+
+		icount = 0;
     if (document.readyState === "complete") {
       icount += 1;
 			// All addresses are found
@@ -227,39 +247,31 @@ $("#NextToPhoton").click(function(e){
           x.className = x.className.replace("show", "hide");
         }, 0);
       }
-  }
-
+  	}
 	});
 
-  // Photon Result
-  function Get(yourUrl){
-      var Httpreq = new XMLHttpRequest(); // a new request
-      Httpreq.open("GET",yourUrl,false);
-      Httpreq.send(null);
-      return Httpreq.responseText;
-  }
-
   var corrAddress;
+
+	// iteration trough all corrected and ckecked addresses. Photon GET request
   for (corrAddress = 0; corrAddress < lCorrectedTesseractAddresses.length; corrAddress++) {
-    lGeocodeResults.push(JSON.parse(Get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
+    lGeocodeResults.push(JSON.parse(get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
   }
 
 	// error handling
-	if (lGeocodeResults.length ==0 && lCorrectedTesseractAddresses ==0){
+	if (lGeocodeResults.length ==0 && lCorrectedTesseractAddresses.length ==0){
 		showError("No address is given! Please make sure that at least one address is given", "Keine Adresse wurde angegeben. Gebe mindestens eine Addresse an!");
 	}
-	else if (lGeocodeResults.length != lCorrectedTesseractAddresses){
-		showError("To at least one address no location could be found", "Zu mindestens einer Adresse konnte kein Standort gefunden werden");
+	else if (lGeocodeResults.length != lCorrectedTesseractAddresses.length){
+		console.log("Geocode Result length"+lGeocodeResults.length + " != " + lCorrectedTesseractAddresses);
+		showError("No location could be found for at least one selected address", "Zu mindestens einer ausgewählten Adresse konnte kein Standort gefunden werden");
+
 		// create html elemets to show geocoded addresses
 		createGeocodingCheckboxes(lGeocodeResults);
 	} else{
+
 		// create html elemets to show geocoded addresses
 		createGeocodingCheckboxes(lGeocodeResults);
-
 	}
-
-
-
 });
 
 // function removes element from html file
@@ -430,13 +442,6 @@ var loadFile = function(event) {
 	$('#NextToTesseract').prop('disabled', false);
 	$('#NextToTesseract').attr('aria-disabled','false');
   };
-
-// get point coordinates of photon geocoding result --> returns list
-function getCoordinates(tGeojson){
-	lCoords = [];
-	lCoords = tGeojson.features[0].geometry.coordinates;
-	return lCoords
-};
 
 // get address data of photon geocoding result --> returns object
 function getPhotonAddress(tGeojson){
