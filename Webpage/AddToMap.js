@@ -104,39 +104,67 @@ $("#NextToTesseract").click(function(e){
   setTimeout(function () {
     x.className = "show";
   }, 0);
-  setTimeout(function () {
-    x.className = x.className.replace("show", "hide");
-  }, 25500);
-
-//  $('.toast').toast({delay: 5500});
-//$('.toast').toast('show');
 	e.preventDefault();
-	runOCR(imageUrl);
-  //This is not a nice Solution, but works, if the recognigion does not need longer than 5 seconds. (Attemps with a THEN function werent successful)
-  setTimeout(function afterFiveSeconds() {
-    lTesseractResults = reco_Addr_Step2;
-  }, 25000)
-  setTimeout(function afterFiveFiveSeconds() {
-    // create html elements to show digitalization result
-    createDigitalizationCheckboxes(lTesseractResults);
-    // Enable and disable Tabs in Digitalization and Mapping Steps
-    $('#verifyDigTab').removeClass('disabled');
-    $('a[href="#verifyDigContent"]').trigger('click')
-    $('#uploadTab').attr('class','nav-link disabled');
-  }, 25500)
-/*
-	runOCR(imageUrl)
-	.then(function(finalResult) {
-  console.log('Got the final result: ' + finalResult);
-	})
-	.then(result => {
-		console.log("In result!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
-		console.log("Result: " + result);
-		this.lTesseract = result;})
-	.catch(failureCallback);
-	*/
+	// start tesseract
+	setTimeout(runOCR(imageUrl),20000);
+// show loading sign
+	var x = document.getElementById("snackbar");
+	x.className = "show";
+	var time = 0;
+	//error handling + generic wating time (5 seconds steps)
+	myLoop();
+// loop: every loop takes five seconds; after every loop:check if addresses are found;
+	function myLoop () {
+	   setTimeout(function () {
+	      time += 5000;
+				console.log("time  "+ time+ " länge aaray "+  reco_Addr_Step2.length);
+				// under 30 seconds; no address found: loop again
+	      if (time < 20000 && reco_Addr_Step2.length == 0) {
+	         myLoop();
+					 console.log("loop again");
+	      }
+				// time out after 30 seconds
+				if (time >= 20000 && reco_Addr_Step2.length == 0){
+					console.log("time over");
+					setTimeout(function () {
+						x.className = x.className.replace("show", "hide");
+					}, 0);
+					showError("It needs to much time to read this photo. Please make a new picture or cut the important parts. Make sure that there is an address.");
+					return;
+				}
+				// address is found
+				if (reco_Addr_Step2.length !=0){
+					console.log("address found");
+					setTimeout(function () {
+						x.className = x.className.replace("show", "hide");
+					}, 0);
+					lTesseractResults = reco_Addr_Step2;
+					// create html elements to show digitalization result
+					createDigitalizationCheckboxes(lTesseractResults);
+					// Enable and disable Tabs in Digitalization and Mapping Steps
+					$('#verifyDigTab').removeClass('disabled');
+					$('a[href="#verifyDigContent"]').trigger('click')
+					$('#uploadTab').attr('class','nav-link disabled');
+					return;
+				}
+				// found address in last step
+				if (time >= 20000 && reco_Addr_Step2.length != 0){
+					console.log("address found");
+					setTimeout(function () {
+						x.className = x.className.replace("show", "hide");
+					}, 0);
+					lTesseractResults = reco_Addr_Step2;
+					// create html elements to show digitalization result
+					createDigitalizationCheckboxes(lTesseractResults);
+					// Enable and disable Tabs in Digitalization and Mapping Steps
+					$('#verifyDigTab').removeClass('disabled');
+					$('a[href="#verifyDigContent"]').trigger('click')
+					$('#uploadTab').attr('class','nav-link disabled');
+					return;
+				}
+	   }, 5000)
+	}
 });
-
 
 // OnClick event ButtonId: NextToPhoton
 $("#NextToPhoton").click(function(e){
