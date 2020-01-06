@@ -19,5 +19,18 @@ var germanTranslation = {
   "cancel1":"Abbrechen",
   "cancel2":"Abbrechen",
   "mapHeading":"Kartierte Adressen",
-  "errorTitle":"Ups, da ist etwas schiefgegegangen"
+  "errorTitle":"Ups, da ist etwas schiefgegegangen",
+  "load": "Lädt ...",
+  "description": "Beschreibung",
+  "who": "Wer?",
+  "whoT" : "Dieses Projekt wurde erstellt von Melanie Riester, Tibebu Galaso und Nina Kirschner im Wintersemester 2019 / 2020 im Fach Open Source GIS im Studiengang Geomatics an der Hochschule Karlsruhe. Aufgabe war es ein Projekt durchzuführen, welches auf Open Source Programmen oder Bibliotheken aufbaut.",
+  "what": "Was?",
+  "whatT" : "Das Ergebnis dieses Kurses ist die Webseite : Add.2Map. Hierbei handelt es sich um eine responsive Webseite, die die Aufgabe hat aus einem hochgeladenen Foto Addressen zu erkennen und diese auf einer Karte darzustellen.",
+  "hList": "Was kann passiert sein, wenn ich nicht das erwartete Ergebnis erhalte?",
+  "uhList": "Das kann verschiedene Gründe haben:",
+  "li1":"Bildgröße ist zu klein",
+  "li2":"Die Bildqualität ist zu schlecht (Versuch nur die Adresse auszuschneiden und/oder den Kontrast zu erhöhen)",
+  "li3":"Addresse(n) existieren nicht oder konnten vom Geocoder nicht gefunden werden",
+  "li4":"Falls die Adresse an einem falschen Ort angezeigt wird, wurde möglicherweise zu wenig Information gegeben.",
+  "osT": "Benutzte open-source Werkzeuge"
 }

@@ -1,3 +1,29 @@
+/*
+Used Libaries:
+
+Bootstrap
+Copyright (c) 2011-2018 Twitter, Inc.
+Copyright (c) 2011-2018 The Bootstrap Authors
+
+Font Awesome
+
+Leaflet
+Copyright (c) 2010-2019, Vladimir Agafonkin
+Copyright (c) 2010-2011, CloudMade
+
+Leaflet Fullscreen
+Copyright (c) 2015, MapBox
+
+i18next
+Copyright (c) 2017 i18next
+
+(Created by Melanie Riester, Tibebu Galaso und Nina Kirschner under MIT Licence)
+*/
+
+
+
+
+
 // Tesseract result array
 lTesseractResults = [];
 
@@ -33,9 +59,15 @@ function loadMap(tMapId){
 
 
 /* function to show pop up*/
-function showError(textError) {
+function showError(textErrorEN, textErrorDE) {
+				if (i18next.language == "en"){
+					document.getElementById("errormessage").innerHTML = textErrorEN;
+				}
+				else{
+					document.getElementById("errormessage").innerHTML = textErrorDE;
+				}
         console.log("in show error function");
-        document.getElementById("errormessage").innerHTML = textError;
+
         $("#errorPopup").modal();
     }
 
@@ -99,7 +131,7 @@ var isFinished = false;
 
 // OnClick event ButtonId: NextToTesseract
 $("#NextToTesseract").click(function(e){
-  //showError("Bitte Warten"); // Test for error popup
+	//Loading sign
   var x = document.getElementById("snackbar");
   setTimeout(function () {
     x.className = "show";
@@ -129,7 +161,7 @@ $("#NextToTesseract").click(function(e){
 					setTimeout(function () {
 						x.className = x.className.replace("show", "hide");
 					}, 0);
-					showError("It needs to much time to read this photo. Please make a new picture or cut the important parts. Make sure that there is an address.");
+					showError("It needs to much time to read this photo. Please make a new picture or cut the important parts. Make sure that there is an address.", "Es dauert zu lange das Bild zu lesen. Bitte mache ein neues Foto oder schneide es zu. Stell klar, dass eine Addresse sichtbar ist.");
 					return;
 				}
 				// address is found
@@ -181,17 +213,16 @@ $("#NextToPhoton").click(function(e){
 		var value = $(this).attr('value');
 		var textInput = document.getElementById('digitInputText'+value);
 		var address = textInput.value;
-
 		// append selected address to array lCorrectedTesseractAddresses
 		lCorrectedTesseractAddresses.push(address);
-		//console.log("InputTextId: " + textInput.id + " address: " + address);
+		//show loading sign
     var x = document.getElementById("snackbar");
     x.className = "show";
     icount = 0;
     if (document.readyState === "complete") {
       icount += 1;
+			// All addresses are found
       if (icount == lCorrectedTesseractAddresses.length){
-        console.log("alle geladen");
         setTimeout(function () {
           x.className = x.className.replace("show", "hide");
         }, 0);
@@ -213,11 +244,12 @@ $("#NextToPhoton").click(function(e){
     lGeocodeResults.push(JSON.parse(Get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
   }
 
+	// error handling
 	if (lGeocodeResults.length ==0 && lCorrectedTesseractAddresses ==0){
-		showError("No address is given! Please make sure that at least one address is given");
+		showError("No address is given! Please make sure that at least one address is given", "Keine Adresse wurde angegeben. Gebe mindestens eine Addresse an!");
 	}
 	else if (lGeocodeResults.length != lCorrectedTesseractAddresses){
-		showError("To at least one address no location could be found");
+		showError("To at least one address no location could be found", "Zu mindestens einer Adresse konnte kein Standort gefunden werden");
 		// create html elemets to show geocoded addresses
 		createGeocodingCheckboxes(lGeocodeResults);
 	} else{
@@ -452,7 +484,7 @@ function updateContent() {
 	'processStepsHeading', 'uploadTab', 'verifyDigTab', 'verifyGeoTab', 'chooseFile',
 	'NextToTesseract', 'NextToPhoton', 'NextToMap', 'digitDescription',
 	'geocDescription', 'cancel1', 'cancel2', 'mapHeading', 'navbarDropdown',
-	'english', 'german'];
+	'english', 'german', 'errorTitle', 'load', 'description', 'who', 'whoT', 'what','whatT', 'hList', 'uhList', 'li1', 'li2', 'li3', 'li4', 'osT'];
 
 	var i;
 	for (i=0; i < lTextElementIds.length; i++){
