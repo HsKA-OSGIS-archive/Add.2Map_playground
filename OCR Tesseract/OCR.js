@@ -1,3 +1,12 @@
+/*
+Used Libaries:
+
+Tesseract.js: Apache License 2.0
+
+(Created by Melanie Riester, Tibebu Galaso und Nina Kirschner under MIT Licence)
+*/
+
+
 this.result = null;
 var resultArray= [];
 var reco_Addr = [];
