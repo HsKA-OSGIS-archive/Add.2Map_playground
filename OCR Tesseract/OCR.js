@@ -26,7 +26,7 @@ function recognizedTexts(){
 		resultArray.push(this.result[i].text);
 	}
 	var myJASON = JSON.stringify(resultArray);
-	console.log("Recognized:" + myJASON);
+	//console.log("Recognized:" + myJASON);
 }
 
 /*Regex: https://www.regexbuddy.com/javascript.html
@@ -48,8 +48,8 @@ function foundAddress(){//This function successfully extract all the addresses e
 	    //there are two options: PL and City Name are interchangable in position when they written
 	    // important only to use in GUI
 			if ((resultArray[j+1].match(hNumber) || resultArray[j+2].match(cityName) )|| (resultArray[j+3].match(pCode)) ) {//  streetNumber, Zip & city
-				console.log("Found Address:\n" + "streetName:" +resultArray[j]+ " " + resultArray[j+1] + "  PL:"+resultArray[j+3] +
-				"  City:"+resultArray[j+2]);//for Gui
+				//console.log("Found Address:\n" + "streetName:" +resultArray[j]+ " " + resultArray[j+1] + "  PL:"+resultArray[j+3] +
+				//"  City:"+resultArray[j+2]);//for Gui
 		    reco_Addr_Step2.push(resultArray[j]+ "," + resultArray[j+1] + "," +resultArray[j+3] + "," + resultArray[j+2]);//input for geocoder
 			}
 			else if ((resultArray[j+1].match(hNumber) || resultArray[j+2].match(pCode)) || (resultArray[j+3].match(cityName))) {//houseNumber, city & Zip
@@ -59,7 +59,7 @@ function foundAddress(){//This function successfully extract all the addresses e
 	  }
 	    // Am, Im case in the beggining----------------------------------------------------------------------------------------------------------------
 		else if (resultArray[j].match(amCase) || resultArray[j].match(imCase)){
-      console.log("This is Am case");
+      //console.log("This is Am case");
       if (resultArray[j+2].match(hNumber)) {
         reco_Addr_Step2.push(resultArray[j] + "," + resultArray[j+1] + "," + resultArray[j+2] + "," + resultArray[j+3] + "," + resultArray[j+4]);
       }
@@ -97,12 +97,8 @@ function foundAddress(){//This function successfully extract all the addresses e
       }
     }// str. case-------------------------------------------------------------------------------------------------------------------------------------------------
 	}
-
 	//Print the result to console
 	reco_Addr_Step2.forEach(element => console.log("Address: " + element));
-	console.log("\nFound Address:" + "streetName:" +resultArray[j]+" " + resultArray[j+1] + "  PL:"+resultArray[j+2] + "  City:"+resultArray[j+3]);
-	lTesseractResults = reco_Addr_Step2;
-	//return reco_Addr_Step2;
 }
 
 
