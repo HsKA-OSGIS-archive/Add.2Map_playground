@@ -42,3 +42,31 @@ That could have many different reasons:
 
 ## LICENSE
 The software is under the MIT License. For more details please check the LICENSE file.
+
+## Used libraries
+
+### Bootstrap
+The MIT License (MIT)
+Copyright (c) 2011-2018 Twitter, Inc.
+Copyright (c) 2011-2018 The Bootstrap Authors
+
+### Leaflet
+BSD 2-Clause "Simplified" License
+Copyright (c) 2010-2019, Vladimir Agafonkin
+Copyright (c) 2010-2011, CloudMade
+All rights reserved.
+
+### Leaflet Fullscreen
+ISC License
+Copyright (c) 2015, MapBox
+
+### i18next
+The MIT License (MIT)
+Copyright (c) 2017 i18next
+
+### Tesseract.js
+Apache License 2.0
+
+### Font Awesome
+Font Awesome Free License
+Font Awesome Free is free, open source, and GPL friendly. You can use it for commercial projects, open source projects, or really almost whatever you want. Full Font Awesome Free license: https://fontawesome.com/license/free.
