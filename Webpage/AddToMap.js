@@ -107,6 +107,7 @@ function hideStepsShowMap(){
 	// show map
 	$("#headingMap").show();
 	$("#mapdiv").show();
+	$("#reloadDIV").show();
 	loadMap("map");
 
 	var allGeoJsons = [];
