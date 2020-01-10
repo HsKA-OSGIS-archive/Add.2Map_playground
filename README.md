@@ -1,21 +1,21 @@
 # Add.2Map
 
 ## Who?
-This project was created by Melanie Riester, Tibebu Galaso and Nina Kirschner in Wintersemester 2019 / 2020 in the study course Open Source GIS and the study program Geomatics at the university of applied science in Karlsruhe. The task was to do a project which is built on open-source programs or libraries.
+This project was created by Melanie Riester, Tibebu Galaso and Nina Kirschner in Wintersemester 2019 / 2020 in the study course Open Source GIS and the study program Geomatics at the University of Applied Science in Karlsruhe. The task was to implement a self-chosen open-source project, which includes the fields of Open Source, Web and GIS.
 
 ## What?
-The result is this website: Add.2Map. This Website is responsive.
-The purpose is to upload a photo with one or more addresses and to get the position of this address(es) on a map as a result.
-It is recommended to use the webpage from a mobile device as a photo of addresses can be taken directly
+The result is the website Add.2Map.
+The purpose of this project is to upload a photo with one or more addresses and to get the position of these address(es) on a map as a result. This makes sense especially when several analogue addresses are involved, as digitalization is automated and time can be saved.
+It is recommended to use the webpage from a mobile device as a photo of addresses can be taken directly.
 
 The project is divided into three parts:
-  1. The optical character recognition (OCR), for the address extraction from uploaded photos with the library tesseract.js
-  2. The geocoder, for finding the coordinates for each recognized address with the search engine photon
-  3. The responsive webpage as a user interface with
-      - navigation bar with home and about page
+  - Optical character recognition (OCR), for the address extraction from uploaded photos with the library tesseract.js
+  - Geocoder, for finding the coordinates for each recognized address with the search engine Photon
+  - Responsive webpage as a user interface with
+      - navigation bar (home and about page)
       - user interaction, to validate the results from the character recognition and the geocoding
       - visualization of the geocoded addresses on a map
-      - Basic error handling
+      - basic error handling
       - multilanguage support (English, German)
 
 
