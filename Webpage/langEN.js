@@ -32,5 +32,6 @@ var englishTranslation = {
   "li2":"Image quality is too low (try to cut the addresses out and increase contrast)",
   "li3":"Adress(es) does not exists or the Geocoder couldn't find them",
   "li4":"If the address is at a wrong position, it might be that to less information was given",
-  "osT": "Used open-source tools"
+  "osT": "Used open-source tools",
+  "relaodPageButton": "Reset page"
 }

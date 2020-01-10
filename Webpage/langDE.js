@@ -32,5 +32,6 @@ var germanTranslation = {
   "li2":"Die Bildqualität ist zu schlecht (Versuch nur die Adresse auszuschneiden und/oder den Kontrast zu erhöhen)",
   "li3":"Addresse(n) existieren nicht oder konnten vom Geocoder nicht gefunden werden",
   "li4":"Falls die Adresse an einem falschen Ort angezeigt wird, wurde möglicherweise zu wenig Information gegeben.",
-  "osT": "Benutzte open-source Werkzeuge"
+  "osT": "Benutzte open-source Werkzeuge",
+  "relaodPageButton": "Seite zurücksetzen"
 }
