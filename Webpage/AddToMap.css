@@ -7,6 +7,10 @@
   width: 100%;  /* This means "100% of the width of its container", the .col-md-8 */
 }
 
+.geocodingCeckboxGroup{
+  display: block;
+}
+
 .jumbotron-fluid h1 {
    font-size: 2em;
    color: white;
