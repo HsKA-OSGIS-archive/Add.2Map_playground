@@ -2,7 +2,7 @@
 
 For this work, we used the geocoder Photon.
 In our code, we are using the running Photon geocoder from komoot, which is available under this URL: http://photon.komoot.de/api/?
-Before you run use this sourcecode: check if this url is still available!
+Please be aware that we cannot garatuee that this url is still available! So, please check if this url is still available, before you use this source code!
 
 If you run this project it is also possible to not use the Photon geocoder from komoot but to run your own Photon.
 In the "Installation" section all the important information is given.
