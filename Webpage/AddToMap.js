@@ -168,7 +168,7 @@ var x = document.getElementById("snackbar");
 function myLoop () {
 	 setTimeout(function () {
 			time += 5000;
-			console.log("time  "+ time+ " länge aaray "+  reco_Addr_Step2.length);
+			console.log("time :"+ time+ ", length array: "+  reco_Addr_Step2.length);
 
 			// under 30 seconds; no address found: loop again
 			if (time < 20000 && reco_Addr_Step2.length == 0) {
@@ -294,26 +294,26 @@ $("#NextToPhoton").click(function(e){
 
   var corrAddress;
 
+	var notFoundAddress = [];
+
 	// iteration trough all corrected and ckecked addresses. Photon GET request
   for (corrAddress = 0; corrAddress < lCorrectedTesseractAddresses.length; corrAddress++) {
-    lGeocodeResults.push(JSON.parse(get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")));
+		var res = JSON.parse(get("http://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1"));
+		if (res.features.length == 0){
+			notFoundAddress.push(lCorrectedTesseractAddresses[corrAddress]);
+		}else {
+			lGeocodeResults.push(res);
+		}
   }
 
-	// error handling
-	if (lGeocodeResults.length ==0 && lCorrectedTesseractAddresses.length ==0){
-		showError("No address is given! Please make sure that at least one address is given", "Keine Adresse wurde angegeben. Gebe mindestens eine Addresse an!");
+	// error handling if address not found
+	if (lGeocodeResults.length != lCorrectedTesseractAddresses.length){
+		showError("Following Address(es) could not be found: " + notFoundAddress.join(", "),
+		"Die folgende(n) Adresse(n) konnte(n) nicht gefunden werden: " + notFoundAddress.join(", "));
 	}
-	else if (lGeocodeResults.length != lCorrectedTesseractAddresses.length){
-		console.log("Geocode Result length"+lGeocodeResults.length + " != " + lCorrectedTesseractAddresses);
-		showError("No location could be found for at least one selected address", "Zu mindestens einer ausgewählten Adresse konnte kein Standort gefunden werden");
 
-		// create html elemets to show geocoded addresses
-		createGeocodingCheckboxes(lGeocodeResults);
-	} else{
-
-		// create html elemets to show geocoded addresses
-		createGeocodingCheckboxes(lGeocodeResults);
-	}
+	// create checkboxes for all found addresses
+	createGeocodingCheckboxes(lGeocodeResults);
 });
 
 // function removes element from html file
@@ -531,7 +531,8 @@ function updateContent() {
 	'processStepsHeading', 'uploadTab', 'verifyDigTab', 'verifyGeoTab', 'chooseFile',
 	'NextToTesseract', 'NextToPhoton', 'NextToMap', 'digitDescription',
 	'geocDescription', 'cancel1', 'cancel2', 'mapHeading', 'navbarDropdown',
-	'english', 'german', 'errorTitle', 'load', 'description', 'who', 'whoT', 'what','whatT', 'hList', 'uhList', 'li1', 'li2', 'li3', 'li4', 'osT'];
+	'english', 'german', 'errorTitle', 'load', 'description', 'who', 'whoT', 'what',
+	'whatT', 'hList', 'uhList', 'li1', 'li2', 'li3', 'li4', 'li5', 'osT'];
 
 	var i;
 	for (i=0; i < lTextElementIds.length; i++){
