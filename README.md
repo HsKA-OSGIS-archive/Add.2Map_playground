@@ -26,10 +26,10 @@ To run this website:
 1. Download the latest release
 2. Unzip the folder
 3. Check if the URL: http://photon.komoot.de/api/?q=Berlin is available.
-	- If not, change it to a available photon api, or use your own: change the url in the file AddToMap.js.
-	- If you want to use your own geocoder anyway: change the url in the file AddToMap.js. (Instructions in the readme of the geocoder photon-folder)
-	- If it is availabe, you do not have to change anything
-4. Run the index.html in the folder Webpage (The usage of a webserver is not necessary)
+	- If not, change it to an available photon API, or use your own: change the URL in the file AddToMap.js.
+	- If you want to use your own geocoder anyway: change the URL in the file AddToMap.js. (Instructions in the readme of the geocoder photon-folder)
+	- If it is available, you do not have to change anything
+4. Run the index.html in the folder Webpage (The usage of a web server is not necessary)
 
 
 ## What happened if I don't get a result or not the result that I expected?
