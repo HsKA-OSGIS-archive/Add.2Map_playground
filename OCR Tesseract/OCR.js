@@ -15,7 +15,7 @@ var reco_Addr_Step2 = [];
 
 function runOCR(picturePath){
 	console.log("OCR is Running!");
-	const exampleImage = picturePath;//File Source----------------------------
+	const exampleImage = picturePath;//File Source------------
 	const worker = new Tesseract.TesseractWorker();
 	worker.recognize(exampleImage, 'deu+eng')
 	.progress(progress => console.log('progress', progress))
@@ -29,7 +29,7 @@ function runOCR(picturePath){
 
 //total result
 function recognizedTexts(){
-	//Recognized Addresses are assigned to an array variable---------------------
+	//Recognized Addresses are assigned to an array variable--
 	var i;
 	for (var i = 0; i < this.result.length; i++) {
 		resultArray.push(this.result[i].text);
@@ -38,9 +38,9 @@ function recognizedTexts(){
 	//console.log("Recognized:" + myJASON);
 }
 
-/*Regex: https://www.regexbuddy.com/javascript.html
-https://help.relativity.com/9.0/Content/Relativity/Regular_expressions/Searching_with_regular_expressions.htm#Addition*/
-function foundAddress(){//This function successfully extract all the addresses except for the cities names with the combination of three words(eg. Frankfurt Am Main)
+//This function successfully extract all the addresses except for the cities names with the 
+//combination of three words(eg. Frankfurt Am Main)
+function foundAddress(){
 	var j;
 	var hNumber = /(([0-9]{1,3})([a-zA-Z][0-9]?)?(([+|-])([0-9]{1,3})([a-zA-Z][0-9]?)?)?)/;
 	var pCode =/[0-9]{5}/;// /(\D\-)?[0-9]{5}/;
@@ -49,11 +49,11 @@ function foundAddress(){//This function successfully extract all the addresses e
 	var imCase = /Im{1,2}/;
 
 	for (var j = 0; j < resultArray.length; j++) {
-	  if (resultArray[j].includes("straße") ||resultArray[j].includes("straBe") || resultArray[j].includes("allee") ||
+	  if (resultArray[j].includes("straße") ||resultArray[j].includes("straBe") || resultArray[j].includes("allee") ||//streetName  "straBe" if OCR misrecognize "straße"
 			resultArray[j].includes("weg") || resultArray[j].includes("gasse") || resultArray[j].includes("pfad") ||
 			resultArray[j].includes("damm") || resultArray[j].includes("ring") || resultArray[j].includes("steig")||
 		 	resultArray[j].includes("stieg") || resultArray[j].includes("zeile") || resultArray[j].includes("wall") ||
-		 	resultArray[j].includes("platz") || resultArray[j].includes("chaussee") || resultArray[j].includes("promenade")) { //streetName  "straBe" if OCR misrecognize "straße"
+		 	resultArray[j].includes("platz") || resultArray[j].includes("chaussee") || resultArray[j].includes("promenade")) { 
 	    //there are two options: PL and City Name are interchangable in position when they written
 	    // important only to use in GUI
 			if ((resultArray[j+1].match(hNumber) || resultArray[j+2].match(cityName) )|| (resultArray[j+3].match(pCode)) ) {//  streetNumber, Zip & city
@@ -79,8 +79,8 @@ function foundAddress(){//This function successfully extract all the addresses e
 	          reco_Addr_Step2.push(resultArray[j-2] + "," + resultArray[j-1] + "," + resultArray[j+2]);
 	      }
 	  }*/
-	     // Str. case---------------------------------------------------------------------------------------------------------------------------------------------
-    else if ( resultArray[j].includes("Str.") || resultArray[j].includes("Straße")){// DONEEEEEEEEEEEEEEEEEEEE
+	     // Str. case---------------------------------------------------------------------------------------------------------------------------------------
+    else if ( resultArray[j].includes("Str.") || resultArray[j].includes("Straße")){
       if ((resultArray[j+1].match(hNumber) || resultArray[j+2].match(cityName) )|| (resultArray[j+3].match(pCode)) ) {//  streetNumber, Zip & city
           //reco_Addr.push(resultArray[j+1], resultArray[j+3], resultArray[j+2]);//[j] is skipped here because Straße is replaced with ...straße
           //console.log("Found Address:\n" + "streetName:" +resultArray[j]+ " " + resultArray[j+1] + "  PL:"+resultArray[j+3] + "  City:"+resultArray[j+2]);
@@ -90,8 +90,8 @@ function foundAddress(){//This function successfully extract all the addresses e
          reco_Addr_Step2.push(resultArray[j-1]+"straße" + "," + resultArray[j+1] + "," + resultArray[j+2] + "," + resultArray[j+3]);
     	}
     }// Str. case----------------------------------------------------------------------------------------------------------------------------------------------
-	    // str. case---------------------------------------------------------------------------------------------------------------------------------------------------
-    else if (resultArray[j].includes("str.")){// DONEEEEEEEEEEEEEEEEEEEE
+	    // str. case---------------------------------------------------------------------------------------------------------------------------------------
+    else if (resultArray[j].includes("str.")){
       let strName = strReplace(resultArray[j]);
       //reco_Addr_Step2.push(strName); // Street Name
       //there are two options: PL and City Name are interchangable in position when they written
@@ -104,7 +104,7 @@ function foundAddress(){//This function successfully extract all the addresses e
           //console.log("Found Address:" + "streetName:"+resultArray[j]+ " " +resultArray[j+1] + "  PL:"+resultArray[j+2] + "  City:"+resultArray[j+3]);//for Gui
           reco_Addr_Step2.push( strName + "," + resultArray[j+1] + "," +resultArray[j+2] + "," + resultArray[j+3]);//input for geocoder
       }
-    }// str. case-------------------------------------------------------------------------------------------------------------------------------------------------
+    }// str. case----------------------------------------------------------------------------------------------------------------------------------------------
 	}
 	//Print the result to console
 	reco_Addr_Step2.forEach(element => console.log("Address: " + element));
