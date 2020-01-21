@@ -298,7 +298,7 @@ $("#NextToPhoton").click(function(e){
 
 	// iteration trough all corrected and ckecked addresses. Photon GET request
   for (corrAddress = 0; corrAddress < lCorrectedTesseractAddresses.length; corrAddress++) {
-		var res = JSON.parse(get("https://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1"));
+		var res = JSON.parse(get("https://photon.komoot.de/api/?q="+lCorrectedTesseractAddresses[corrAddress]+"&limit=1")); // changed to https
 		if (res.features.length == 0){
 			notFoundAddress.push(lCorrectedTesseractAddresses[corrAddress]);
 		}else {
