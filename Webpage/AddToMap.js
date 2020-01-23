@@ -171,13 +171,13 @@ function myLoop () {
 			console.log("time :"+ time+ ", length array: "+  reco_Addr_Step2.length);
 
 			// under 30 seconds; no address found: loop again
-			if (time < 100000 && reco_Addr_Step2.length == 0) {
+			if (time < 60000 && reco_Addr_Step2.length == 0) {
 				 myLoop();
 				 console.log("loop again");
 			}
 
 			// time out after 30 seconds
-			if (time >= 100000 && reco_Addr_Step2.length == 0){
+			if (time >= 60000 && reco_Addr_Step2.length == 0){
 				console.log("time over");
 				// hide loading sign
 				setTimeout(function () {
@@ -207,7 +207,7 @@ function myLoop () {
 				return;
 			}
 			// found address in last step
-			if (time >= 100000 && reco_Addr_Step2.length != 0){
+			if (time >= 60000 && reco_Addr_Step2.length != 0){
 				console.log("address found");
 				setTimeout(function () {
 					x.className = x.className.replace("show", "hide");
@@ -234,7 +234,7 @@ $("#NextToTesseract").click(function(e){
   }, 0);
 
 	// start tesseract with timeout
-	setTimeout(runOCR(imageUrl),100000);
+	setTimeout(runOCR(imageUrl),60000);
 
 	// show loading sign
 	x.className = "show";
