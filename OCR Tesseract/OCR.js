@@ -43,7 +43,7 @@ function recognizedTexts(){
 function foundAddress(){
 	var j;
 	var hNumber = /(([0-9]{1,3})([a-zA-Z][0-9]?)?(([+|-])([0-9]{1,3})([a-zA-Z][0-9]?)?)?)/;
-	var pCode =/[0-9]{5}/;// /(\D\-)?[0-9]{5}/;
+	var pCode =/[0-9]{5}/;
 	var cityName = /[A-Zäöüß,]/;
 	var amCase = /Am{1,2}/;
 	var imCase = /Im{1,2}/;
